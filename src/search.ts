@@ -114,7 +114,7 @@ function updateCreatureInfo(root: HTMLElement, creature: CreatureData): void {
   typesElement.innerHTML = creature.types
     .map(
       (creatureType) =>
-        `<span class="tag">Element: ${escapeHtml(creatureType.name)}</span>`,
+        `<span class="tag">Type: ${escapeHtml(creatureType.name)}</span>`,
     )
     .join(" ");
 
