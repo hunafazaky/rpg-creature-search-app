@@ -79,7 +79,7 @@ function renderSearchContent(): string {
         <div class="p-2">
           <p id="weight" class="creature-detail">Weight: -</p>
           <p id="height" class="creature-detail">Height: -</p>
-          <div id="types" class="creature-types">Element: -</div>
+          <div id="types" class="creature-types">Type: -</div>
         </div>
       </section>
 
