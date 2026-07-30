@@ -56,38 +56,47 @@ function escapeHtml(value: string): string {
 
 function renderSearchContent(): string {
   return `
-    <section class="search-panel">
-      <div class="search-row">
-        <label for="search-input">Creature name or id</label>
-        <input id="search-input" type="text" value="Pyrolynx" />
-        <button id="search-button" type="button">Search</button>
-      </div>
-      <div id="search-status" class="search-status" aria-live="polite"></div>
-    </section>
+  <h1>RPG Creature Search App</h1>
+    <div class=" text-brand-dark mx-auto sm:my-4 md:w-1/2 sm:w-3/4 w-full p-4">
+      <section class="search-panel text-sm">
+        <div class="search-row flex flex-col">
+          <label for="search-input" class="text-left py-1">Creature Name or ID</label>
+          <div class="flex">
+            <input id="search-input" type="text" value="Pyrolynx" class="grow bg-brand-base rounded p-1 border"/>
+            <button id="search-button" type="button" class="cursor-pointer bg-sky-700 hover:bg-sky-900 text-brand-base px-2 py-0.5 rounded w-1/5">Search</button>
+          </div>
+        </div>
+        <div class="text-amber-500 h-10">
+          <div id="search-status" class="search-status p-2" aria-live="polite"></div>
+        </div>
+      </section>
 
-    <section class="main-info">
-      <p>
-        <span id="creature-name" class="creature-name"></span>
-        <span id="creature-id" class="creature-id"></span>
-      </p>
-      <p id="weight" class="creature-detail"></p>
-      <p id="height" class="creature-detail"></p>
-      <div id="types" class="creature-types"></div>
-    </section>
+      <section class="main-info text-left text-sm bg-brand-base border rounded">
+        <div class="border-b p-2 font-bold">
+          <span id="creature-id" class="creature-id">#id - </span>
+          <span id="creature-name" class="creature-name">CreatureName</span>
+        </div>
+        <div class="p-2">
+          <p id="weight" class="creature-detail">Weight: -</p>
+          <p id="height" class="creature-detail">Height: -</p>
+          <div id="types" class="creature-types">Element: -</div>
+        </div>
+      </section>
 
-    <section class="stats-table">
-      <table>
-        <thead>
-          <tr>
-            <th>Base</th>
-            <th>Stats</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${statRows.map((row) => `<tr><td>${row.label}:</td><td class="stat" id="${row.id}"></td></tr>`).join("")}
-        </tbody>
-      </table>
-    </section>
+      <section class="stats-table border rounded my-4 text-sm">
+        <table class="table-fixed w-full rounded bg-brand-base text-left">
+          <thead>
+            <tr>
+              <th class="p-2 border-r">Base</th>
+              <th class="p-2">Stats</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${statRows.map((row) => `<tr><td class="p-2 border-t border-r">${row.label}:</td><td class="stat p-2 border-t" id="${row.id}"></td></tr>`).join("")}
+          </tbody>
+        </table>
+      </section>
+    </div>
   `;
 }
 
@@ -99,13 +108,13 @@ function updateCreatureInfo(root: HTMLElement, creature: CreatureData): void {
   const typesElement = root.querySelector<HTMLDivElement>("#types")!;
 
   nameElement.textContent = creature.name;
-  idElement.textContent = `#${creature.id}`;
+  idElement.textContent = `#${creature.id} - `;
   weightElement.textContent = `Weight: ${creature.weight}`;
   heightElement.textContent = `Height: ${creature.height}`;
   typesElement.innerHTML = creature.types
     .map(
       (creatureType) =>
-        `<span class="tag">${escapeHtml(creatureType.name)}</span>`,
+        `<span class="tag">Element: ${escapeHtml(creatureType.name)}</span>`,
     )
     .join(" ");
 
