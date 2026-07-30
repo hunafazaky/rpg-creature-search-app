@@ -1,6 +1,6 @@
 # RPG Creature Search App
 
-**Created by: [Hunafa Zaky]('https://hunafazaky.github.io')**
+**Created by: [Hunafa Zaky](https://hunafazaky.github.io)**
 
 A simple Vite + TypeScript frontend that fetches creature data from an external RPG creature API.
 
